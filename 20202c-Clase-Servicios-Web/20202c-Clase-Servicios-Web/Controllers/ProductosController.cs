@@ -19,31 +19,29 @@ namespace _20202c_Clase_Servicios_Web.Controllers
             prodServicio = new ProductoServicio(contexto);
         }
 
-        // GET api/values
         public IEnumerable<DAL.Producto> Get()
         {
             return prodServicio.ObtenerTodos();
         }
 
-        // GET api/values/5
-        public string Get(int id)
+        public DAL.Producto Get(int id)
         {
-            return "value";
+            return prodServicio.ObtenerPorId(id);
         }
 
-        // POST api/values
-        public void Post([FromBody] string value)
+        public void Post([FromBody] DAL.Producto prod)
         {
+            prodServicio.Alta(prod);
         }
 
-        // PUT api/values/5
-        public void Put(int id, [FromBody] string value)
+        public void Put([FromBody] DAL.Producto prod)
         {
+            prodServicio.Modificar(prod);
         }
 
-        // DELETE api/values/5
         public void Delete(int id)
         {
+            prodServicio.Eliminar(id);
         }
     }
 }
