@@ -1,4 +1,6 @@
-﻿using System;
+﻿using _20202c_Clase_Servicios_Web.Models;
+using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -23,6 +25,9 @@ namespace _20202c_Clase_Servicios_Web
             config.Formatters.JsonFormatter
                     .SerializerSettings
                     .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
+
+         
         }
     }
 }

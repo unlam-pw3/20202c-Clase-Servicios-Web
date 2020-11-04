@@ -1,4 +1,5 @@
 ﻿using _20202c_Clase_Servicios_Web.Models;
+using AutoMapper;
 using DAL;
 using Servicios;
 using System;
@@ -13,10 +14,20 @@ namespace _20202c_Clase_Servicios_Web.Controllers
     public class ProductosDTOController : ApiController
     {
         ProductoServicio prodServicio;
+        MapperConfiguration mapConfig;
+        IMapper iMapper;
         public ProductosDTOController()
         {
             Entities contexto = new Entities();
             prodServicio = new ProductoServicio(contexto);
+
+            mapConfig = new MapperConfiguration(cfg => {
+                cfg.CreateMap<DAL.Producto, ProductoDTO>();
+                cfg.CreateMap<ProductoDTO, DAL.Producto>();
+            });
+
+            iMapper = mapConfig.CreateMapper();
+
         }
 
         public IEnumerable<ProductoDTO> Get()
@@ -41,7 +52,10 @@ namespace _20202c_Clase_Servicios_Web.Controllers
         // GET api/<controller>/5
         public ProductoDTO Get(int id)
         {
-            return new ProductoDTO();
+            DAL.Producto prod = prodServicio.ObtenerPorId(id);
+            ProductoDTO prodDTO = iMapper.Map<DAL.Producto, ProductoDTO>(prod);
+
+            return prodDTO;
         }
 
         // POST api/<controller>
@@ -58,6 +72,8 @@ namespace _20202c_Clase_Servicios_Web.Controllers
         // PUT api/<controller>/5
         public void Put([FromBody] ProductoDTO prodDTO)
         {
+            Producto prod = iMapper.Map<ProductoDTO, DAL.Producto>(prodDTO);
+            prodServicio.Modificar(prod);
         }
 
         // DELETE api/<controller>/5
