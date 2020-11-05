@@ -19,6 +19,11 @@ namespace MVC.Controllers
             return View(productos);
         }
 
+        public ActionResult EjemploConsumiendoDesdeJavascript()
+        {
+            return View();
+        }
+
         private List<ProductoDTO> GetProductos()
         {
             var url = $"https://localhost:44380/api/productosdto";

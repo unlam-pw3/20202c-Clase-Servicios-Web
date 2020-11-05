@@ -1,0 +1,57 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EjemploConsumiendoDesdeJavascript</title>
+    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
+    <script>
+        var tblProductos = $('#tblProductos');
+
+        function cargarProductos() {
+            $.ajax({
+                type: 'GET',
+                url: 'https://localhost:44380/api/productosdto',
+                dataType: 'json',
+                crossDomain: true,
+                success: function (data) {
+
+                    tblProductos.empty();
+                    $.each(data, function (index, val) {
+                        tblProductos.append('<tr><td>' + val.Nombre + '</td><td>' + val.Precio + '</td></tr>');
+                    });
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            cargarProductos();
+
+            $('#btnRefrescar').click(function () {
+                cargarProductos();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <input type="button" name="name" value="Refrescar" id="btnRefrescar" />
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody id="tblProductos">
+
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
