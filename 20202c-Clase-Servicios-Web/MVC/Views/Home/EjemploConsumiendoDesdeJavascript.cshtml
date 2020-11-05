@@ -9,11 +9,21 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>EjemploConsumiendoDesdeJavascript</title>
-    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    @*<script src="~/Scripts/jquery-3.5.1.min.js"></script>*@
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+        }
+    </style>
     <script>
-        var tblProductos = $('#tblProductos');
 
         function cargarProductos() {
+            var tblProductos = $('#tblProductos');
             $.ajax({
                 type: 'GET',
                 url: 'https://localhost:44380/api/productosdto',
@@ -26,32 +36,38 @@
                         tblProductos.append('<tr><td>' + val.Nombre + '</td><td>' + val.Precio + '</td></tr>');
                     });
                 }
+
             });
         }
 
         $(document).ready(function () {
             cargarProductos();
-
             $('#btnRefrescar').click(function () {
                 cargarProductos();
             });
+
         });
     </script>
+
 </head>
 <body>
     <div>
-        <input type="button" name="name" value="Refrescar" id="btnRefrescar" />
-        <table>
+        <input type="button" id="btnRefrescar" value="Refrescar" />
+
+        <table >
             <thead>
                 <tr>
-                    <th>Nombre</th>
-                    <th>Precio</th>
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                        Precio
+                    </th>
                 </tr>
             </thead>
-            <tbody id="tblProductos">
-
-            </tbody>
+            <tbody id="tblProductos"></tbody>
         </table>
+
     </div>
 </body>
 </html>
