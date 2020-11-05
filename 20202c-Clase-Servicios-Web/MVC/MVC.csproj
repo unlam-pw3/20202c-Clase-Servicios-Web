@@ -134,6 +134,14 @@
       <Project>{f6a12ea8-7837-4b10-9f9a-30c3f46af701}</Project>
       <Name>20202c-Clase-Servicios-Web</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{b68f800d-e3fc-482b-86a2-291b368b0d9c}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Servicios\Servicios.csproj">
+      <Project>{72f59902-a0e5-431b-8c36-9bce5ac2e6f9}</Project>
+      <Name>Servicios</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
