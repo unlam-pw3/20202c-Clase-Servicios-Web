@@ -1,0 +1,31 @@
+﻿@model List<_20202c_Clase_Servicios_Web.Models.ProductoDTO>
+    @{
+        Layout = null;
+    }
+
+    <!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>EjemploConsumiendoDesdeBackend</title>
+    </head>
+    <body>
+        <div>
+            <table>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Nombre</td>
+                        <td>@item.Precio</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </body>
+</html>
